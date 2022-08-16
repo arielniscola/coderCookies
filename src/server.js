@@ -20,6 +20,7 @@ const mensajeContenedor = new Contenedor(configSqlite, 'Mensaje');
 const productoContenedor = new Contenedor(configMariaDB, 'Producto');
 
 app.use(express.json())
+app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 app.use(
     session({
@@ -44,7 +45,7 @@ app.engine('hbs', engine({
 app.set('views', path.join(__dirname, './public/views'));
 app.set('view engine', 'hbs');
 
-app.use('/api', route);
+app.use('/', route);
 
 io.on('connection', async socket => {
     console.log(`Se conecto un usuario ${socket.id}`)

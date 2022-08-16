@@ -14,18 +14,20 @@ router.get('/productos-test', async (req, res) => {
 })
 
 router.get('/', authMiddleware, (req, res) => {
-   res.sendFile(path.join(__dirname, '../public/index.html'))
+   console.log('Auth middle');
+   res.sendFile(path.join(__dirname, '../public/home.html'))
 })
 
 router.get('/login', loginMiddleware,(req, res) => {
    res.sendFile(path.join(__dirname, '../public/login.html'))
 })
 
-router.post('/login', (req, res) => {
+router.get('/api/login', (req, res) => {
    try {
-      req.session.username = req.body.username;
-      console.log(req.body);
-      res.redirect("/api/index")
+      console.log('aca si');
+      req.session.username = req.query.username;
+      console.log(req.query.username);
+      res.redirect("/")
    } catch (error) {
       res.json({error: true, message: error})
    }

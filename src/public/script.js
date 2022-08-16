@@ -1,13 +1,13 @@
-const e = require("express")
-
 const loginForm = document.querySelector('#loginForm')
 const usernameInput = document.querySelector('#username')
 
 async function submitHandler(e){
     e.preventDefault()
     try {
-        const response = await fetch('/login')
-        await fetch('/')
+        console.log(usernameInput.value);
+        await fetch(`/api/login?username=${usernameInput.value}`)
+
+       window.location.href = "/";
     } catch (error) {
         console.log(error);
     }

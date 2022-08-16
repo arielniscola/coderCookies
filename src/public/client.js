@@ -10,6 +10,7 @@ const emailInput = document.querySelector('#emailInput')
 const messageInput = document.querySelector('#messageInput')
 const messagesPool = document.querySelector('#messagesPool')
 
+
 function sendMessage() {
     try {
         const username = emailInput.value
@@ -75,5 +76,8 @@ async function renderProducts(products){
        
 }
 
+    const el = document.getElementById("welcomeuser");
+    el.textContent = "Bienvenido!!";
+    
 
 socket.on('server:products', renderProducts);
